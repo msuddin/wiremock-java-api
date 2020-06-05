@@ -8,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static io.restassured.RestAssured.get;
+import static io.restassured.RestAssured.*;
 import static org.hamcrest.CoreMatchers.is;
 
 @RunWith(SpringRunner.class)
@@ -25,6 +25,13 @@ public class ControllerTest {
 
     @Test
     public void shouldGetStringOfHi() {
-        get("hi").then().body(is("Hi QA Shahin"));
+        String name = "QAShahin";
+
+        given()
+            .pathParam("name", name)
+        .when()
+            .get("hi/{name}")
+        .then()
+            .body(is(String.format("Hi %s", name)));
     }
 }
