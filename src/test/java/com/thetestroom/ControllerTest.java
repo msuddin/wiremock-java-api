@@ -34,4 +34,16 @@ public class ControllerTest {
         .then()
             .body(is(String.format("Hi %s", name)));
     }
+
+    @Test
+    public void shouldGetPersonName() {
+        String name = "QAShahin";
+
+        given()
+            .param("name", name)
+        .when()
+            .get("/hello")
+        .then()
+            .body("name", is(name));
+    }
 }
