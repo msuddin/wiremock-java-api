@@ -1,9 +1,6 @@
 package com.thetestroom;
 
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class Controller {
@@ -16,5 +13,10 @@ public class Controller {
     @RequestMapping("/hello")
     public Person getPerson(@RequestParam("name") String name) {
         return new Person(name);
+    }
+
+    @RequestMapping(value = "/person", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
+    public Person person(@RequestBody Person person) {
+        return new Person(person.getName(), person.getAge());
     }
 }

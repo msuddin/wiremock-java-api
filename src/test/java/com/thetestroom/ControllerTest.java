@@ -46,4 +46,16 @@ public class ControllerTest {
         .then()
             .body("name", is(name));
     }
+
+    @Test
+    public void shouldGetPersonObject() {
+        given()
+            .contentType("application/json")
+            .body(new Person("qashahin", 25))
+        .when()
+            .post("/person")
+        .then()
+            .body("name", is("qashahin"))
+            .body("age", is(25));
+    }
 }
