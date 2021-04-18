@@ -1,9 +1,18 @@
 package com.thetestroom;
 
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 @RestController
 public class Controller {
+
+    String wireMockApi = "http://localhost:8080";
+
+    @RequestMapping("/valid")
+    public String getValid() {
+        RestTemplate request = new RestTemplate();
+        return request.getForEntity(wireMockApi + "/valid", String.class).getBody();
+    }
 
     @RequestMapping("/hi/{name}")
     public String sayHello(@PathVariable("name") String name) {

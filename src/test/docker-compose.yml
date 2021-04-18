@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+
+  wiremock-api:
+    build:
+      context: .
+      dockerfile: Dockerfile.wiremock
+    image: wiremock-api
+    container_name: wiremock-api
+    command: "--verbose"
+    ports:
+      - 8080:8080
+    networks:
+      test-network:
+
+networks:
+  test-network:
