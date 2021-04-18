@@ -8,36 +8,46 @@ public class Controller {
 
     String wireMockApi = "http://localhost:8080";
 
-    @RequestMapping("/valid")
-    public String getValid() {
+    @RequestMapping(value = "/valid", produces = "application/json")
+    public String getValidResponse() {
         RestTemplate request = new RestTemplate();
         return request.getForEntity(wireMockApi + "/valid", String.class).getBody();
     }
 
-    @RequestMapping("/delay")
-    public String getDelay() {
+    @RequestMapping(value = "/delay", produces = "application/json")
+    public String getDelayedResponse() {
         RestTemplate request = new RestTemplate();
         return request.getForEntity(wireMockApi + "/delay", String.class).getBody();
     }
 
-    @RequestMapping("/chunk")
-    public String getChunk() {
+    @RequestMapping(value = "/chunk", produces = "application/json")
+    public String getChunkedResponse() {
         RestTemplate request = new RestTemplate();
         return request.getForEntity(wireMockApi + "/chunk", String.class).getBody();
     }
 
-    @RequestMapping("/hi/{name}")
-    public String sayHello(@PathVariable("name") String name) {
-        return "Hi " + name;
+    @RequestMapping("/empty")
+    public String getEmptyResponse() {
+        RestTemplate request = new RestTemplate();
+        return request.getForEntity(wireMockApi + "/empty", String.class).getBody();
     }
 
-    @RequestMapping("/hello")
-    public Person getPerson(@RequestParam("name") String name) {
-        return new Person(name);
+    @RequestMapping("/malformed")
+    public String getMalformedResponse() {
+        RestTemplate request = new RestTemplate();
+        return request.getForEntity(wireMockApi + "/malformed", String.class).getBody();
     }
 
-    @RequestMapping(value = "/person", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
-    public Person person(@RequestBody Person person) {
-        return new Person(person.getName(), person.getAge());
+    @RequestMapping("/random")
+    public String getRandomResponse() {
+        RestTemplate request = new RestTemplate();
+        return request.getForEntity(wireMockApi + "/random", String.class).getBody();
     }
+
+    @RequestMapping("/close")
+    public String getCloseResponse() {
+        RestTemplate request = new RestTemplate();
+        return request.getForEntity(wireMockApi + "/close", String.class).getBody();
+    }
+
 }

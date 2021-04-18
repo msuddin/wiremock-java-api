@@ -29,6 +29,10 @@ docker-compose up
 | GET /valid | GET /valid | Return a 'valid message' with response of 200, happy path |
 | GET /delay | GET /delay | Return a 'delay message' with response of 200, endpoint takes 10 seconds to respond, simulates a long response time |
 | GET /chunk | GET /chunk | Return a 'chunk message' with response of 200, 5 chunks over 2 seconds, simulates a slow network response |
+| GET /empty | GET /empty | Simulates the wiremock server returning an empty message |
+| GET /malformed | GET /malformed | Simulates the wiremock server returning a malformed message |
+| GET /random | GET /random | Simulates the wiremock server returning some random data and then closing the connection|
+| GET /close | GET /close | Simulates the wiremock server closing the connection |
 
 #### Hitting Endpoints
 

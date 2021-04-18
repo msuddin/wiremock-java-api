@@ -1,0 +1,10 @@
+{
+  "priority": 90,
+  "request": {
+    "method": "GET",
+    "url": "/empty"
+  },
+  "response": {
+    "fault": "EMPTY_RESPONSE"
+  }
+}

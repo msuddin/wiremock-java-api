@@ -1,0 +1,10 @@
+{
+  "priority": 90,
+  "request": {
+    "method": "GET",
+    "url": "/malformed"
+  },
+  "response": {
+    "fault": "MALFORMED_RESPONSE_CHUNK"
+  }
+}

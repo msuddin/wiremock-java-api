@@ -1,0 +1,10 @@
+{
+  "priority": 90,
+  "request": {
+    "method": "GET",
+    "url": "/close"
+  },
+  "response": {
+    "fault": "CONNECTION_RESET_BY_PEER"
+  }
+}

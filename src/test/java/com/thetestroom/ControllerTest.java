@@ -8,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static io.restassured.RestAssured.*;
+import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.is;
 
 @RunWith(SpringRunner.class)
@@ -24,38 +24,62 @@ public class ControllerTest {
     }
 
     @Test
-    public void shouldGetStringOfHi() {
-        String name = "QAShahin";
-
+    public void shouldGetValidResponseFromWiremock() {
         given()
-            .pathParam("name", name)
-        .when()
-            .get("hi/{name}")
+            .get("/valid")
         .then()
-            .body(is(String.format("Hi %s", name)));
+            .body("message", is("valid message"));
     }
 
     @Test
-    public void shouldGetPersonName() {
-        String name = "QAShahin";
-
+    public void shouldGetDelayResponseFromWiremock() {
         given()
-            .param("name", name)
-        .when()
-            .get("/hello")
+            .get("/delay")
         .then()
-            .body("name", is(name));
+            .body("message", is("delay message"));
     }
 
     @Test
-    public void shouldGetPersonObject() {
+    public void shouldGetChunkResponseFromWiremock() {
         given()
-            .contentType("application/json")
-            .body(new Person("qashahin", 25))
-        .when()
-            .post("/person")
+            .get("/chunk")
         .then()
-            .body("name", is("qashahin"))
-            .body("age", is(25));
+            .body("message", is("chunk message"));
+    }
+
+    @Test
+    public void shouldGetEmptyResponseFromWiremock() {
+        given()
+            .get("/empty")
+        .then()
+            .statusCode(500)
+            .header("connection", "close");
+    }
+
+    @Test
+    public void shouldGetMalformedResponseFromWiremock() {
+        given()
+            .get("/malformed")
+        .then()
+            .statusCode(500)
+            .header("connection", "close");
+    }
+
+    @Test
+    public void shouldGetRandomClosedConnectionResponseFromWiremock() {
+        given()
+            .get("/random")
+        .then()
+            .statusCode(500)
+            .header("connection", "close");
+    }
+
+    @Test
+    public void shouldGetClosedConnectionResponseFromWiremock() {
+        given()
+            .get("/close")
+        .then()
+            .statusCode(500)
+            .header("connection", "close");
     }
 }

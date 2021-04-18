@@ -1,0 +1,10 @@
+{
+  "priority": 90,
+  "request": {
+    "method": "GET",
+    "url": "/random"
+  },
+  "response": {
+    "fault": "RANDOM_DATA_THEN_CLOSE"
+  }
+}
