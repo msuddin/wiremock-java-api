@@ -14,6 +14,18 @@ public class Controller {
         return request.getForEntity(wireMockApi + "/valid", String.class).getBody();
     }
 
+    @RequestMapping("/delay")
+    public String getDelay() {
+        RestTemplate request = new RestTemplate();
+        return request.getForEntity(wireMockApi + "/delay", String.class).getBody();
+    }
+
+    @RequestMapping("/chunk")
+    public String getChunk() {
+        RestTemplate request = new RestTemplate();
+        return request.getForEntity(wireMockApi + "/chunk", String.class).getBody();
+    }
+
     @RequestMapping("/hi/{name}")
     public String sayHello(@PathVariable("name") String name) {
         return "Hi " + name;

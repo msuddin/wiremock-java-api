@@ -11,24 +11,27 @@ We currently have two API's:
 
 The Spring Boot API make calls to the wiremock API internall and covers areas of functionality of Wiremock
 
-## Endpoints
+## Instructions
 
-### Spring Boot API - GET /valid
+### Spring Boot API
+For the moment, running it locally via IntelliJ
 
-Spring Boot API
-
+### Wiremock API
+Navigate to src/test/resources and run:
 ```
-GET /valid
-```
-
-Calls Wiremock API
-```
-GET /valid
+docker-compose up
 ```
 
-Which Returns a valid-response.json
+### Endpoints
+
+| Spring Boot API Endpoint | Wiremock API Endpoint | Expected Response |
+| --- | --- | --- |
+| GET /valid | GET /valid | Return a 'valid message' with response of 200, happy path |
+| GET /delay | GET /delay | Return a 'delay message' with response of 200, endpoint takes 10 seconds to respond, simulates a long response time |
+| GET /chunk | GET /chunk | Return a 'chunk message' with response of 200, 5 chunks over 2 seconds, simulates a slow network response |
+
+#### Hitting Endpoints
+
 ```
-{
-  "message": "valid message"
-}
+curl http://localhost:8081/<replace-with-spring-boot-api-endpoint-from-table-above>
 ```

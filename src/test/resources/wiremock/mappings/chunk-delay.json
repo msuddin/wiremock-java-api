@@ -1,0 +1,15 @@
+{
+  "priority": 90,
+  "request": {
+    "method": "GET",
+    "url": "/chunk"
+  },
+  "response": {
+    "status": 200,
+    "chunkedDribbleDelay": {
+      "numberOfChunks": 5,
+      "totalDuration": 2000
+    },
+    "bodyFileName": "chunk-response.json"
+  }
+}

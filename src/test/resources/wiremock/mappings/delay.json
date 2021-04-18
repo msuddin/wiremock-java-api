@@ -1,0 +1,12 @@
+{
+  "priority": 90,
+  "request": {
+    "method": "GET",
+    "url": "/delay"
+  },
+  "response": {
+    "status": 200,
+    "fixedDelayMilliseconds": 10000,
+    "bodyFileName": "delay-response.json"
+  }
+}
